@@ -22,9 +22,14 @@
 </template>
 
 <script lang="ts">
-export default {
-  name: "Login"
-}
+import {defineComponent} from "vue";
+
+export default defineComponent({
+  name: "Login",
+  setup(){
+
+  }
+});
 </script>
 
 <style scoped>

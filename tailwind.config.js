@@ -5,8 +5,12 @@ module.exports = {
     extend: {
       colors: {
         'primary-background': '#23B8E3',
-        'btn-login': '#FDCA3D'
-      }
+        'btn-login': '#FDCA3D',
+        'primary': '#263238'
+      },
+      fontFamily: {
+        body: ['Montserrat'],
+      },
     },
   },
   variants: {
