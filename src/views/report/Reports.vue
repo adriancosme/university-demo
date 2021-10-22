@@ -43,9 +43,9 @@
 
 <script lang="ts">
 import {defineComponent, onMounted, ref} from "vue";
-import Sidebar from "../../components/sidebar/Sidebar";
 import {getAllPrograms} from "@/services/program.service";
 import {Program} from "@/types/types";
+import Sidebar from "@/components/sidebar/Sidebar.vue";
 
 export default defineComponent({
   name: "Reports",
@@ -70,6 +70,7 @@ export default defineComponent({
 
     const formatDate = (date: string) => {
       const dateObject = new Date(date);
+      //@ts-ignore
       const dateFormatter = new Intl.DateTimeFormat('es-MX',{dateStyle: 'medium'});
       return dateFormatter.format(dateObject);
     }

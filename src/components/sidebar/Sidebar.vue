@@ -10,6 +10,7 @@
       </div>
     </div>
     <SidebarLink to="/reports" icon="report.svg" name="Reportes" />
+    <SidebarLink to="/users" icon="account.svg" name="Usuarios"/>
     <SidebarLink to="/configuration" icon="configuration.svg" name="Configuración"/>
   </div>
 </template>
