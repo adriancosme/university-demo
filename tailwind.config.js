@@ -11,6 +11,9 @@ module.exports = {
       fontFamily: {
         body: ['Montserrat'],
       },
+      textColor: {
+        primary: '#23B8E3'
+      }
     },
   },
   variants: {
