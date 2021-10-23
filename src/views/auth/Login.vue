@@ -1,18 +1,16 @@
 <template>
   <div class="flex w-full min-h-screen">
-    <div class="w-1/2 flex flex-col mx-20  my-10">
+    <div class="w-1/2 flex flex-col ml-28 my-10">
       <div class="flex flex-row">
         <img src="../../assets/logo-school.png" alt="Logo">
       </div>
       <div class="flex flex-row justify-start my-5">
         <h1 class="text-2xl font-bold text-gray-700">Inicia sesión</h1>
       </div>
-      <div class="flex flex-col max-w-max items-start">
-        <label for="username" class="text-lg text-gray-500 my-2">Usuario</label>
-        <input class="border-2 w-full rounded border-gray-200" id="username" type="text">
-        <label for="password" class="text-lg text-gray-500 my-2">Contraseña</label>
-        <input class="border-2 w-full rounded border-gray-200" id="password" type="text">
-        <button class="py-2 px-4 w-full text-white font-semibold bg-btn-login rounded-lg shadow-md my-3">Iniciar sesión</button>
+      <div class="flex flex-col w-9/12 items-start">
+        <Input label="Usuario" v-model="username" />
+        <Input label="Contraseña" type="password" v-model="password" />
+        <button class="py-2 px-4 w-full text-white font-semibold bg-btn-login rounded-lg shadow-md my-3" @click="login">Iniciar sesión</button>
       </div>
     </div>
     <div class="w-1/2 bg-primary-background">
@@ -22,12 +20,34 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import {defineComponent, ref} from "vue";
+import Input from "@/components/common/Input.vue";
+import {authenticate} from "@/services/auth.service";
+import { createToast } from 'mosha-vue-toastify';
+import 'mosha-vue-toastify/dist/style.css'
 
 export default defineComponent({
   name: "Login",
+  components: {
+    Input,
+  },
   setup(){
+    const username = ref<string>('');
+    const password = ref<string>('');
 
+    const login = async () => {
+      try{
+        await authenticate({username: username.value, password: password.value});
+        createToast('Sesion iniciada', {type: 'success'});
+      }catch (e) {
+        createToast(e.message, {type: 'warning'})
+      }
+    }
+    return {
+      username,
+      password,
+      login
+    }
   }
 });
 </script>
