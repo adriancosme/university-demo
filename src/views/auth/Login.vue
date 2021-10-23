@@ -8,9 +8,11 @@
         <h1 class="text-2xl font-bold text-gray-700">Inicia sesión</h1>
       </div>
       <div class="flex flex-col w-9/12 items-start">
-        <Input label="Usuario" v-model="username" />
-        <Input label="Contraseña" type="password" v-model="password" />
-        <button class="py-2 px-4 w-full text-white font-semibold bg-btn-login rounded-lg shadow-md my-3" @click="login">Iniciar sesión</button>
+        <Input label="Usuario" v-model="username"/>
+        <Input label="Contraseña" type="password" v-model="password"/>
+        <button class="py-2 px-4 w-full text-white font-semibold bg-btn-login rounded-lg shadow-md my-3" @click="login">
+          Iniciar sesión
+        </button>
       </div>
     </div>
     <div class="w-1/2 bg-primary-background">
@@ -20,26 +22,30 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref} from "vue";
+import {ref} from "vue";
 import Input from "@/components/common/Input.vue";
 import {authenticate} from "@/services/auth.service";
-import { createToast } from 'mosha-vue-toastify';
+import {createToast} from 'mosha-vue-toastify';
 import 'mosha-vue-toastify/dist/style.css'
 
-export default defineComponent({
+export default {
   name: "Login",
   components: {
     Input,
   },
-  setup(){
+  setup() {
     const username = ref<string>('');
     const password = ref<string>('');
 
     const login = async () => {
-      try{
-        await authenticate({username: username.value, password: password.value});
+      try {
+        const auth = await authenticate({username: username.value, password: password.value});
+        localStorage.setItem('token', auth.data.accessToken);
+        localStorage.setItem('userId', auth.data.user.id);
+        localStorage.setItem('role', auth.data.user.roles);
+        window.location.href = '/reports'
         createToast('Sesion iniciada', {type: 'success'});
-      }catch (e) {
+      } catch (e) {
         createToast(e.message, {type: 'warning'})
       }
     }
@@ -49,7 +55,7 @@ export default defineComponent({
       login
     }
   }
-});
+};
 </script>
 
 <style scoped>

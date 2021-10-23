@@ -10,8 +10,9 @@
       </div>
     </div>
     <SidebarLink to="/reports" icon="report.svg" name="Reportes" />
-    <SidebarLink to="/users" icon="account.svg" name="Usuarios"/>
+    <SidebarLink to="/users" icon="account.svg" name="Usuarios" v-if="isAdmin" />
     <SidebarLink to="/configuration" icon="configuration.svg" name="Configuración"/>
+    <SidebarLink to="/login" icon="sign-out.svg" name="Cerrar sesion" @click="clearStore"/>
   </div>
 </template>
 
@@ -22,6 +23,17 @@ export default {
   name: "Sidebar",
   components: {
     SidebarLink
+  },
+  setup(){
+    const role = localStorage.getItem('role');
+    const isAdmin = role === 'ADMIN';
+    const clearStore = () => {
+      localStorage.clear();
+    }
+    return {
+      isAdmin,
+      clearStore
+    }
   }
 }
 </script>
