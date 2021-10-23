@@ -3,6 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-    @apply font-body;
+html, body {
+    font-family: 'Montserrat', sans-serif;
+}
+#app {
+    font-family: 'Montserrat', sans-serif;
 }
