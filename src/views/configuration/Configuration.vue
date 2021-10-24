@@ -27,11 +27,11 @@
 
 <script lang="ts">
 import {defineComponent, onMounted, ref} from "vue";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Input from "../../components/common/Input";
 import {editUser, getUserProfile} from "@/services/users.service";
 import {createToast} from "mosha-vue-toastify";
 import {User} from "@/types/types";
+import Sidebar from "@/components/sidebar/Sidebar.vue";
+import Input from "@/components/common/Input.vue";
 
 export default defineComponent({
   name: "Configuration",
