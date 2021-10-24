@@ -76,7 +76,8 @@ export default defineComponent({
           },
         }
         const userEdited = await editUser(user.value.id, userData)
-        console.log(userEdited);
+        localStorage.setItem('user-name', userEdited.profile.name);
+        window.location.href = '/configuration';
       } catch (e) {
         console.log(e.message)
       }

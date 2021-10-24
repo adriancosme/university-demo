@@ -42,6 +42,7 @@ export default {
         const auth = await authenticate({username: username.value, password: password.value});
         localStorage.setItem('token', auth.data.accessToken);
         localStorage.setItem('userId', auth.data.user.id);
+        localStorage.setItem('user-name', auth.data.user.profile.name);
         localStorage.setItem('role', auth.data.user.roles);
         window.location.href = '/reports'
         createToast('Sesion iniciada', {type: 'success'});
