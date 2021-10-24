@@ -50,9 +50,9 @@ export default defineComponent({
       if (userId !== null) {
         try {
           user.value = await getUserProfile(Number(userId));
-          username.value = user.value.username;
-          name.value = user.value.profile?.name;
-          email.value = user.value.profile?.email;
+          username.value = user.value.username ? user.value.username : '';
+          name.value = user.value.profile?.name ? user.value.profile?.name : '';
+          email.value = user.value.profile?.email ? user.value.profile?.email : '';
         } catch (e) {
           createToast('Ocurrio un error', {type: 'danger'})
         }
