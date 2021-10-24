@@ -26,10 +26,14 @@ export const createUser = (data: User) => {
 }
 
 export const deleteUser = (id: number) => {
-    return fetch(`${baseURL}/api/user/${id}`,{
+    return fetch(`${baseURL}/api/user/${id}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
         },
     }).then(response => response.json()).then(data => data);
+}
+
+export const getUserProfile = (id: number) => {
+    return fetch(`${baseURL}/api/user/${id}`).then(response => response.json()).then(data => data);
 }
