@@ -1,5 +1,5 @@
 # university-demo
-# REPOSITORY: https://github.com/adriancosme/university-demo-api
+# BACKEND: https://github.com/adriancosme/university-demo-api
 
 ## Project setup
 ```
